@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('purchase-order','PurchaseOrderController')->middleware('auth');
+Route::resource('sbu','SbuController')->middleware('auth');

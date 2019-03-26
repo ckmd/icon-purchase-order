@@ -89,7 +89,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="sbu" class="nav-link">
                     <i class="fas fa-list nav-icon"></i><p>Halaman SBU</p>
                 </a>
               </li>
@@ -116,6 +116,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.content-header -->
 
     <!-- Main content -->
+    <br>
+    @yield('content')
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
