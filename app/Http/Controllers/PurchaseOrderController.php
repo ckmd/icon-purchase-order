@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PurchaseOrder;
+use App\Sbu;
 
 class PurchaseOrderController extends Controller
 {
@@ -13,7 +15,9 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        //
+        $sbus = Sbu::all();
+        $pos = PurchaseOrder::all();
+        return view('purchase-order.index', compact('pos','sbus'));
     }
 
     /**
@@ -34,7 +38,10 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $data = $request->all();
+        PurchaseOrder::create($request->all());
+        return redirect('purchase-order');
+        // return view('purchase-order.item-form', compact('data'));
     }
 
     /**

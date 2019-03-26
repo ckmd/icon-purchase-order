@@ -77,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link"><i class="nav-icon fa fa-tachometer-alt"></i><p>Dashboard</p></a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link"><i class="nav-icon fa fa-cart-plus"></i><p>Halaman PO</p></a>
+            <a href="purchase-order" class="nav-link"><i class="nav-icon fa fa-cart-plus"></i><p>Halaman PO</p></a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
