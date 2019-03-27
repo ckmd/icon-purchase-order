@@ -10,11 +10,11 @@
         <div class="modal-body">
 
             <div class="form-group">
-                <label for="id">Select list (select one):</label>
-                <select name="id_sbu" class="form-control" id="id">
+                <label for="sbu">Select list (select one):</label>
+                <select name="nama_sbu" class="form-control" id="sbu">
                     <option selected>-- Pilih Region SBU --</option>
                 @foreach($sbus as $r)
-                    <option value="{{$r->id_sbu}}">{{$r->nama_sbu}}</option>
+                    <option value="{{$r->nama_sbu}}">{{$r->nama_sbu}}</option>
                 @endforeach
                 </select>
             </div>
@@ -25,8 +25,13 @@
             </div>
 
             <div class="form-group">
-                <label for="project">Nama Project</label>
+                <label for="project">Nama Project (optional)</label>
                 <input type="text" class="form-control" name="project_name" id="project">
+            </div>
+
+            <div class="form-group">
+                <label for="reservasi">No Reservasi FSM</label>
+                <input type="text" class="form-control" name="no_reservasi" id="reservasi">
             </div>
 
             <div class="form-group">

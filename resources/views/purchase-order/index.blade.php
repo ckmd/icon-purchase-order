@@ -24,18 +24,20 @@
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>No. </th>
-                    <th>Id_SBU</th>
+                    <th>Region_SBU</th>
                     <th>PO_Number</th>
                     <th>Project_Name</th>
+                    <th>No_Reservasi</th>
                     <th>Purchase_Order_Date</th>
                     <th>Action</th>
                 </tr>
                 @foreach($pos as $p)
                 <tr>
                     <th>{{$p->id}}</th>
-                    <td>{{$p->id_sbu}}</td>
+                    <td>{{$p->nama_sbu}}</td>
                     <td>{{$p->po_number}}</td>
                     <td>{{$p->project_name}}</td>
+                    <td>{{$p->no_reservasi}}</td>
                     <td>{{$p->po_date}}</td>
                     <td>
                         <button class='btn btn-success detail-po' data-pohref="purchase-order-detail/{{$p->po_number}}">Detail</button>
