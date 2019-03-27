@@ -76,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link"><i class="nav-icon fa fa-tachometer-alt"></i><p>Dashboard</p></a>
+            <a href="/dashboard" class="nav-link"><i class="nav-icon fa fa-tachometer-alt"></i><p>Dashboard</p></a>
           </li>
           <li class="nav-item">
             <a href="/purchase-order" class="nav-link"><i class="nav-icon fa fa-cart-plus"></i><p>Halaman PO</p></a>
@@ -98,6 +98,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="/item" class="nav-link">
                     <i class="fas fa-list nav-icon"></i><p>Halaman Item</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/report" class="nav-link">
+                    <i class="fas fa-table nav-icon"></i><p>Halaman Report</p>
                 </a>
               </li>
             </ul>
