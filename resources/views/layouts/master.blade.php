@@ -5,7 +5,8 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
-<head><script type="text/javascript" src="https://adminlte.io/injected/cashery.js"></script>
+<head>
+<!-- <script type="text/javascript" src="https://adminlte.io/injected/cashery.js"></script> -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -15,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="hold-transition sidebar-mini">
+<div id="app">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -94,14 +96,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="item" class="nav-link">
                     <i class="fas fa-list nav-icon"></i><p>Halaman Item</p>
                 </a>
               </li>
             </ul>
           </li>
+          <!-- <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p></a>
+          </li> -->
           <li class="nav-item">
-            <a href="#" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p></a>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </li>
         </ul>
       </nav>
@@ -131,6 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Default to the left -->
     <strong>Copyright &copy; 2014-2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
+</div>
 </div>
 <!-- ./wrapper -->
 <script src="/js/app.js"></script>

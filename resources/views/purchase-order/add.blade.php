@@ -16,13 +16,7 @@
                 @foreach($sbus as $r)
                     <option value="{{$r->id_sbu}}">{{$r->nama_sbu}}</option>
                 @endforeach
-                    <!-- <option value="1">ROJB</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option> -->
                 </select>
-                <!-- <label for="id">ID SBU</label>
-                <input type="text" class="form-control" name="id_sbu" id="id"> -->
             </div>
 
             <div class="form-group">
@@ -44,17 +38,17 @@
                 <tr>
                     <th>No.</th>
                     <th>Nama Item</th>
-                    <th>Harga</th>
+                    <th>Harga_Unit</th>
                     <th>Quantity</th>
                 </tr>
-                @for($i = 1; $i <= 21; $i++)
+                @foreach($items as $i)
                 <tr>
-                    <td>{{$i}}</td>
-                    <td>Nama item {{$i}}</td>
-                    <td>harga item {{$i}}</td>
-                    <td><input type="text" class="form-control" name="quantity"></td>
+                    <td>{{$i->id}}</td>
+                    <td>{{$i->nama_item}}</td>
+                    <td>{{number_format($i->unit_price).""}}</td>
+                    <td><input type="text" class="form-control" name="{{$i->id}}"></td>
                 </tr>
-                @endfor
+                @endforeach
             </table>
 
         </div>

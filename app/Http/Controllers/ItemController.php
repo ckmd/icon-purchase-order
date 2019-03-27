@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PurchaseOrder;
-use App\Sbu;
 use App\Item;
 
-class PurchaseOrderController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,8 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        $sbus = Sbu::all();
-        $pos = PurchaseOrder::all();
         $items = Item::all();
-        return view('purchase-order.index', compact('pos','sbus','items'));
+        return view('item.index', compact('items'));
     }
 
     /**
@@ -40,15 +36,8 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = $request->all();
-        return $request->all();
-        $items = Item::all();
-        foreach ($items as $i) {
-            
-        }
-        PurchaseOrder::create($request->all());
-        return redirect('purchase-order');
-        // return view('purchase-order.item-form', compact('data'));
+        Item::create($request->all());
+        return redirect('item');
     }
 
     /**
