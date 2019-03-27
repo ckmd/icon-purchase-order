@@ -23,3 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('purchase-order','PurchaseOrderController')->middleware('auth');
 Route::resource('sbu','SbuController')->middleware('auth');
 Route::resource('item','ItemController')->middleware('auth');
+
+Route::get('purchase-order-detail/{po_number}','PurchaseOrderController@detail')->middleware('auth');

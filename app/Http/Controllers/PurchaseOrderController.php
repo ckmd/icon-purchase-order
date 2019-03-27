@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PurchaseOrder;
 use App\Sbu;
 use App\Item;
+use App\Nota;
 
 class PurchaseOrderController extends Controller
 {
@@ -19,9 +20,33 @@ class PurchaseOrderController extends Controller
         $sbus = Sbu::all();
         $pos = PurchaseOrder::all();
         $items = Item::all();
-        return view('purchase-order.index', compact('pos','sbus','items'));
+        $notas = Nota::all();
+        return view('purchase-order.index', compact('pos','sbus','items','notas'));
     }
 
+    public function detail($po_number){
+        $detail_po = PurchaseOrder::where('po_number',$po_number)->first();
+        $detailNota = Nota::where('id_po',$po_number)->where('quantity','<>',null)->get();
+        $no = 1;
+        $total = 0;
+        foreach ($detailNota as $i) {
+            $itemDetail = Item::where('id', $i->id_item);
+            $itemPrice = $itemDetail->value('unit_price');
+            $totalPrice = $i->quantity * $itemPrice;
+            $items[] = array(
+                'no' => $no,
+                'item_name' => $itemDetail->value('nama_item'),
+                'quantity' => $i->quantity,
+                'price' => $itemPrice,
+                'total_price' => $totalPrice,
+            );
+            $no++;
+            $total += $totalPrice;
+        }
+        // return $items;
+        // return $detail_po;
+        return view('purchase-order.detail', compact('detail_po', 'items','total'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -40,15 +65,19 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = $request->all();
-        return $request->all();
         $items = Item::all();
+        $total_price = 0;
         foreach ($items as $i) {
-            
+            $id_item = $i->id;
+            $nota = new Nota;
+            $nota->id_po = $request->po_number;
+            $nota->id_item = $id_item;
+            $nota->quantity = $request->$id_item;
+            $nota->save();
+            $total_price += $nota->quantity * $i->unit_price;
         }
         PurchaseOrder::create($request->all());
         return redirect('purchase-order');
-        // return view('purchase-order.item-form', compact('data'));
     }
 
     /**

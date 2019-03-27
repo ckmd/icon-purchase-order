@@ -1,5 +1,15 @@
 @extends('layouts.master')
 
+@section('footer')
+
+<script>
+    $(".detail-po").click(function() {
+        window.location = $(this).data("pohref");
+    });
+</script>
+
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -28,7 +38,8 @@
                     <td>{{$p->project_name}}</td>
                     <td>{{$p->po_date}}</td>
                     <td>
-                        <button class="btn btn-success">Detail</button>
+                        <button class='btn btn-success detail-po' data-pohref="purchase-order-detail/{{$p->po_number}}">Detail</button>
+                        <!-- <button data-poid="{{$p->id}}" class="btn btn-success" data-toggle="modal" data-target="#detail">Detail</button> -->
                         <button class="btn btn-warning">Edit</button>
                         <button class="btn btn-danger">Hapus</button>
                     </td>
