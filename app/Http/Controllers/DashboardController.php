@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTime;
 use App\Report;
+use App\Item;
+use App\PurchaseOrder;
+use App\Nota;
 
 class DashboardController extends Controller
 {
@@ -16,7 +20,64 @@ class DashboardController extends Controller
     {
         $region = 'RJBR';
         $reports = Report::all()->where('nama_sbu', $region);
-        return view('dashboard.index', compact('reports','region'));
+        // $po_number = PurchaseOrder::where('nama_sbu', $region)->value('po_number');
+        // $notas = Nota::all()->where('id_po', $po_number);
+        
+        foreach ($reports as $r) {
+            // return $notas;
+            // return $r;
+            // filter penjumlahan data per bulan mulai dari sini, sementara menghitung januari
+            $pos = PurchaseOrder::where('nama_sbu', $region)->get();//setiap PO pasti punya PO Number
+            $sumQuantity = 0;
+            $janQuantity = 0;
+            $febQuantity = 0;
+            $marQuantity = 0;
+            $aprQuantity = 0;
+            $meiQuantity = 0;
+            $junQuantity = 0;
+            foreach ($pos as $po) {
+                $month = date_format(new DateTime($po->po_date), 'Y-m');
+                $quantity = Nota::where('id_po', $po->po_number)->where('id_item',$r->id_item)->value('quantity');
+                $sumQuantity += $quantity;
+                switch ($month) {
+                    case '2019-01':
+                        $janQuantity += $quantity;
+                        break;                
+                    case '2019-02':
+                        $febQuantity += $quantity;
+                        break;
+                    case '2019-03':
+                        $marQuantity += $quantity;
+                        break;                
+                    case '2019-04':
+                        $aprQuantity += $quantity;
+                        break;                
+                    case '2019-05':
+                        $meiQuantity += $quantity;
+                        break;                
+                    case '2019-06':
+                        $junQuantity += $quantity;
+                        break;                
+                    default:
+                        break;
+                }
+            }
+
+            $totalUsed = array(1,2,3);
+            $jatahSisa = $r->jatah_awal - $sumQuantity;
+            $report[] = array(
+                'nama_item' => Item::where('id', $r->id_item)->value('nama_item'),
+                'jatah_awal' => $r->jatah_awal,
+                'jatah_sisa' => $jatahSisa,
+                'jan' => $janQuantity,
+                'feb' => $febQuantity,
+                'mar' => $marQuantity,
+                'apr' => $aprQuantity,
+                'mei' => $meiQuantity,
+                'jun' => $junQuantity,
+            );
+        }
+        return view('dashboard.index', compact('report','region'));
     }
 
     /**
