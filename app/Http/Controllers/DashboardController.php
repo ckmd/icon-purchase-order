@@ -8,6 +8,7 @@ use App\Report;
 use App\Item;
 use App\PurchaseOrder;
 use App\Nota;
+use App\Sbu;
 
 class DashboardController extends Controller
 {
@@ -18,15 +19,37 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $region = 'RJBR';
+        $sbus = Sbu::all();
+        $report = null;
+        return view('dashboard.index', compact('report','sbus'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $sbus = Sbu::all();
+        $region = $request->nama_sbu;
         $reports = Report::all()->where('nama_sbu', $region);
-        // $po_number = PurchaseOrder::where('nama_sbu', $region)->value('po_number');
-        // $notas = Nota::all()->where('id_po', $po_number);
-        
+        // Redirect if no choose region
+        if($region=="null"){
+            return redirect('dashboard');
+        }
         foreach ($reports as $r) {
-            // return $notas;
-            // return $r;
-            // filter penjumlahan data per bulan mulai dari sini, sementara menghitung januari
             $pos = PurchaseOrder::where('nama_sbu', $region)->get();//setiap PO pasti punya PO Number
             $sumQuantity = 0;
             $janQuantity = 0;
@@ -77,28 +100,7 @@ class DashboardController extends Controller
                 'jun' => $junQuantity,
             );
         }
-        return view('dashboard.index', compact('report','region'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $reports = Report::all();
+        return view('dashboard.index', compact('report','region','sbus'));
     }
 
     /**

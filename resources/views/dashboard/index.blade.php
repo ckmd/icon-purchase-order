@@ -4,6 +4,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <form action="{{route('dashboard.store')}}" method="post">
+              {{csrf_field()}}
+                <div class="form-group">
+                    <label for="sbu">Select Region SBU (select one):</label>
+                    <select name="nama_sbu" class="form-control" id="sbu">
+                        <option value="null" selected>-- Pilih Region SBU --</option>
+                    @foreach($sbus as $r)
+                        <option value="{{$r->nama_sbu}}">{{$r->nama_sbu}}</option>
+                    @endforeach
+                    </select>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form> <br>
+            @if($report!=null)
             <h4>Region {{$region}}</h4>
             <table class="table table-bordered table-responsive">
                 <thead>
@@ -39,6 +54,7 @@
                     @endforeach
                 </tbody>
             </table>
+            @endif
         </div>
     </div>
 </div>
