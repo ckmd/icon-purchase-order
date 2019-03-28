@@ -58,6 +58,12 @@ class DashboardController extends Controller
             $aprQuantity = 0;
             $meiQuantity = 0;
             $junQuantity = 0;
+            $julQuantity = 0;
+            $agtQuantity = 0;
+            $sepQuantity = 0;
+            $oktQuantity = 0;
+            $novQuantity = 0;
+            $desQuantity = 0;
             foreach ($pos as $po) {
                 $month = date_format(new DateTime($po->po_date), 'Y-m');
                 $quantity = Nota::where('id_po', $po->po_number)->where('id_item',$r->id_item)->value('quantity');
@@ -80,7 +86,25 @@ class DashboardController extends Controller
                         break;                
                     case '2019-06':
                         $junQuantity += $quantity;
-                        break;                
+                        break;
+                    case '2019-07':
+                        $julQuantity += $quantity;
+                        break;
+                    case '2019-08':
+                        $agtQuantity += $quantity;
+                        break;
+                    case '2019-09':
+                        $sepQuantity += $quantity;
+                        break;
+                    case '2019-10':
+                        $oktQuantity += $quantity;
+                        break;
+                    case '2019-11':
+                        $novQuantity += $quantity;
+                        break;
+                    case '2019-12':
+                        $desQuantity += $quantity;
+                        break;
                     default:
                         break;
                 }
@@ -98,6 +122,12 @@ class DashboardController extends Controller
                 'apr' => $aprQuantity,
                 'mei' => $meiQuantity,
                 'jun' => $junQuantity,
+                'jul' => $julQuantity,
+                'agt' => $agtQuantity,
+                'sep' => $sepQuantity,
+                'okt' => $oktQuantity,
+                'nov' => $novQuantity,
+                'des' => $desQuantity,
             );
         }
         return view('dashboard.index', compact('report','region','sbus'));

@@ -1,6 +1,21 @@
 @extends('layouts.master')
 
 @section('footer')
+<script>
+    $('#edit').on('show.bs.modal', function(event){
+        var button = $(event.relatedTarget);
+        var jatah = button.data('jatahawal');
+        var item = button.data('namaitem');
+        var sbu = button.data('namasbu');
+        var id = button.data('reportid');
+
+        var modal = $(this);
+        modal.find('.modal-body #reportid').val(id);
+        modal.find('.modal-body #namasbu').val(sbu);
+        modal.find('.modal-body #namaitem').val(item);
+        modal.find('.modal-body #jatahawal').val(jatah);
+    });
+</script>
 @endsection
 
 @section('content')
@@ -32,8 +47,8 @@
                         <td>{{$r->id_item}}</td>
                         <td>{{$r->jatah_awal}}</td>
                         <td>
-                            <button class="btn btn-warning">Edit</button>
-                            <button class="btn btn-danger">Hapus</button>
+                            <button class="btn btn-warning" data-reportid="{{$r->id}}" data-namasbu="{{$r->nama_sbu}}" data-namaitem="{{$r->id_item}}" data-jatahawal="{{$r->jatah_awal}}" data-toggle="modal" data-target="#edit">Edit</button>
+                            <!-- <button class="btn btn-danger">Hapus</button> -->
                         </td>
                     </tr>
                     @endforeach
@@ -46,3 +61,4 @@
 @endsection
 
 @include('report.add')
+@include('report.edit')

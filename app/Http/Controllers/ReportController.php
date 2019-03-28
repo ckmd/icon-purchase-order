@@ -83,7 +83,9 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $report = Report::findOrFail($request->id);
+        $report->update($request->all());
+        return back();
     }
 
     /**
