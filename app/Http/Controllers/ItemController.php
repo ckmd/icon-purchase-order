@@ -75,7 +75,6 @@ class ItemController extends Controller
         $item = Item::findOrFail($request->id);
         $item->update($request->all());
         return back();
-
     }
 
     /**

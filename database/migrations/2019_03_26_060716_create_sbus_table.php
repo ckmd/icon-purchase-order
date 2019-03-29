@@ -14,7 +14,7 @@ class CreateSbusTable extends Migration
     public function up()
     {
         Schema::create('sbus', function (Blueprint $table) {
-            $table->bigIncrements('id_sbu');
+            $table->bigIncrements('id');
             $table->string('nama_sbu');
             $table->timestamps();
         });

@@ -59,7 +59,6 @@ class SbuController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -69,9 +68,11 @@ class SbuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $sbu = Sbu::where('id', $request->id)->firstOrFail();
+        $sbu->update($request->all());
+        return back();
     }
 
     /**
@@ -80,8 +81,15 @@ class SbuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request)
+    {        
+        $sbu = Sbu::findOrFail($request->id);
+        $sbu->delete();
+        // menghapus purchase order yang terlibat
+        // $sbuInNota = PurchaseOrder::where('nama_sbu',$request->id)->get();
+        // $itemInNota->each->delete();
+        // Menghapus nota yang terlibat dengan purchase order
+        return back();
+
     }
 }
