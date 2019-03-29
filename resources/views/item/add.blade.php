@@ -10,12 +10,12 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="nama_item">Nama Item</label>
-                <input type="text" class="form-control" name="nama_item" id="nama_item">
+                <input type="text" class="form-control" name="nama_item" id="nama_item" required>
             </div>
 
             <div class="form-group">
                 <label for="unit_price">Unit Price</label>
-                <input type="text" class="form-control" name="unit_price" id="unit_price">
+                <input type="text" class="form-control" name="unit_price" id="unit_price" required>
             </div>
         </div>
         <div class="modal-footer">

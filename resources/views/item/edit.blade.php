@@ -16,8 +16,8 @@
                 </tr>
                 <tr>
                     <input type="hidden" class="form-control" name="id" id="itemid">
-                    <td><input type="text" class="form-control" id="namaitem" name="nama_item"></td>
-                    <td><input type="text" class="form-control" id="unitprice" name="unit_price"></td>
+                    <td><input type="text" class="form-control" id="namaitem" name="nama_item" required></td>
+                    <td><input type="text" class="form-control" id="unitprice" name="unit_price" required></td>
                 </tr>
             </table>
 

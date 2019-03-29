@@ -11,7 +11,7 @@
 
             <div class="form-group">
                 <label for="sbu">Select list (select one):</label>
-                <select name="nama_sbu" class="form-control" id="sbu">
+                <select name="nama_sbu" class="form-control" id="sbu" required>
                     <option value="" selected>-- Pilih Region SBU --</option>
                 @foreach($sbus as $r)
                     <option value="{{$r->nama_sbu}}">{{$r->nama_sbu}}</option>
@@ -31,7 +31,7 @@
                     <td>{{$i->id}}</td>
                     <td>{{$i->nama_item}}</td>
                     <td>{{number_format($i->unit_price).""}}</td>
-                    <td><input type="text" class="form-control" name="{{$i->id}}"></td>
+                    <td><input type="text" class="form-control" name="{{$i->id}}" required></td>
                 </tr>
                 @endforeach
             </table>

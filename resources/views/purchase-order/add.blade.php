@@ -11,8 +11,8 @@
 
             <div class="form-group">
                 <label for="sbu">Select list (select one):</label>
-                <select name="nama_sbu" class="form-control" id="sbu">
-                    <option selected>-- Pilih Region SBU --</option>
+                <select name="nama_sbu" class="form-control" id="sbu" required>
+                    <option value="" selected>-- Pilih Region SBU --</option>
                 @foreach($sbus as $r)
                     <option value="{{$r->nama_sbu}}">{{$r->nama_sbu}}</option>
                 @endforeach
@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label for="number">Purchase Order Number</label>
-                <input type="text" class="form-control" name="po_number" id="number">
+                <input type="text" class="form-control" name="po_number" id="number" required>
             </div>
 
             <div class="form-group">
@@ -31,12 +31,12 @@
 
             <div class="form-group">
                 <label for="reservasi">No Reservasi FSM</label>
-                <input type="text" class="form-control" name="no_reservasi" id="reservasi">
+                <input type="text" class="form-control" name="no_reservasi" id="reservasi" required>
             </div>
 
             <div class="form-group">
                 <label for="date">Tanggal Purchase Order</label>
-                <input type="date" class="form-control" name="po_date" id="date">
+                <input type="date" class="form-control" name="po_date" id="date" required>
             </div>
 
             <table class="table table-striped">
@@ -51,7 +51,7 @@
                     <td>{{$i->id}}</td>
                     <td>{{$i->nama_item}}</td>
                     <td>{{number_format($i->unit_price).""}}</td>
-                    <td><input type="text" class="form-control" name="{{$i->id}}"></td>
+                    <td><input type="text" class="form-control" name="{{$i->id}}" required></td>
                 </tr>
                 @endforeach
             </table>

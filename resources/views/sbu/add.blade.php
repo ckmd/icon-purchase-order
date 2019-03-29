@@ -10,7 +10,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="nama">Nama SBU</label>
-                <input type="text" class="form-control" name="nama_sbu" id="nama">
+                <input type="text" class="form-control" name="nama_sbu" id="nama" required>
             </div>
         </div>
         <div class="modal-footer">
