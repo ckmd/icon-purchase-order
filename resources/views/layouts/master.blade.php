@@ -77,15 +77,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link"><i class="nav-icon fa fa-tachometer-alt"></i><p>Dashboard</p></a>
+            <a href="/dashboard" class="nav-link"><i class="nav-icon fa fa-list"></i><p>Dashboard</p></a>
           </li>
           <li class="nav-item">
-            <a href="/purchase-order" class="nav-link"><i class="nav-icon fa fa-cart-plus"></i><p>Halaman PO</p></a>
+            <a href="/purchase-order" class="nav-link"><i class="nav-icon fa fa-list"></i><p>Halaman Purchase Order</p></a>
           </li>
           <li class="nav-item">
-            <a href="/add-stock" class="nav-link"><i class="nav-icon fa fa-cart-plus"></i><p>Halaman Tambah Stock</p></a>
+            <a href="/add-stock" class="nav-link"><i class="nav-icon fa fa-list"></i><p>Halaman Tambah Stock</p></a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
+            <a href="/sbu" class="nav-link">
+                <i class="fas fa-list nav-icon"></i><p>Halaman SBU</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/item" class="nav-link">
+                <i class="fas fa-list nav-icon"></i><p>Halaman Item</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+          </li>
+
+          <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-cog"></i>
               <p>
@@ -93,35 +112,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/sbu" class="nav-link">
-                    <i class="fas fa-list nav-icon"></i><p>Halaman SBU</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/item" class="nav-link">
-                    <i class="fas fa-list nav-icon"></i><p>Halaman Item</p>
-                </a>
-              </li>
+            <ul class="nav nav-treeview"> -->
               <!-- <li class="nav-item">
                 <a href="/report" class="nav-link">
                     <i class="fas fa-table nav-icon"></i><p>Halaman Report</p>
                 </a>
               </li> -->
-            </ul>
-          </li>
+            <!-- </ul>
+          </li> -->
           <!-- <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p></a>
           </li> -->
-          <li class="nav-item">
-            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

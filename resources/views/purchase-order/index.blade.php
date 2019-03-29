@@ -42,7 +42,7 @@
                     <td>
                         <button class='btn btn-success detail-po' data-pohref="purchase-order-detail/{{$p->po_number}}">Detail</button>
                         <!-- <button data-poid="{{$p->id}}" class="btn btn-success" data-toggle="modal" data-target="#detail">Detail</button> -->
-                        <button class="btn btn-warning">Edit</button>
+                        <!-- <button class="btn btn-warning">Edit</button> -->
                         <button class="btn btn-danger">Hapus</button>
                     </td>
                 </tr>

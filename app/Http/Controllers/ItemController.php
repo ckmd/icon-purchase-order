@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Item;
+use App\Nota;
 
 class ItemController extends Controller
 {
@@ -69,9 +70,12 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $item = Item::findOrFail($request->id);
+        $item->update($request->all());
+        return back();
+
     }
 
     /**
@@ -80,8 +84,12 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $item = Item::findOrFail($request->id);
+        $itemInNota = Nota::where('id_item',$request->id)->get();
+        $item->delete();
+        $itemInNota->each->delete();
+        return back();
     }
 }
