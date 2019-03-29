@@ -95,16 +95,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="fas fa-list nav-icon"></i><p>Halaman Item</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-          </li>
 
-          <!-- <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-cog"></i>
               <p>
@@ -112,14 +104,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview"> -->
-              <!-- <li class="nav-item">
-                <a href="/report" class="nav-link">
-                    <i class="fas fa-table nav-icon"></i><p>Halaman Report</p>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p>
                 </a>
-              </li> -->
-            <!-- </ul>
-          </li> -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+              </li>
+            </ul>
+          </li>
           <!-- <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p></a>
           </li> -->

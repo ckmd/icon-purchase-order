@@ -39,9 +39,10 @@
                     <th>Unit_Price</th>
                     <th>Action</th>
                 </tr>
+                <?php $no = 1;?>
                 @foreach($items as $i)
                 <tr>
-                    <th>{{$i->id}}</th>
+                    <th>{{$no}}</th>
                     <td>{{$i->nama_item}}</td>
                     <td>Rp {{number_format($i->unit_price).""}}</td>
                     <td>
@@ -49,6 +50,7 @@
                         <button class="btn btn-danger" data-itemid="{{$i->id}}" data-toggle="modal" data-target="#delete">Hapus</button>
                     </td>
                 </tr>
+                <?php $no++;?>
                 @endforeach
             </table>
         </div>

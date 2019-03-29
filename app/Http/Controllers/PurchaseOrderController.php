@@ -120,8 +120,12 @@ class PurchaseOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $po = PurchaseOrder::findOrFail($request->id);
+        $poInNota = Nota::where('id_po',$request->id)->get();
+        $po->delete();
+        $poInNota->each->delete();
+        return back();
     }
 }

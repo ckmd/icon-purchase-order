@@ -16,7 +16,7 @@
                     @endforeach
                     </select>
                 </div>
-            </form> <br>
+            </form>
             @if($report!=null)
             <h4>Region {{$region}}</h4>
             <table class="table table-bordered table-responsive">
@@ -26,7 +26,7 @@
                         <th rowspan=2>Nama Item</th>
                         <th rowspan=2>Jatah_Awal</th>
                         <th rowspan=2>Jatah_Sisa</th>
-                        <th colspan=12>Purchase Order Setiap Bulan</th>
+                        <th colspan=12>Purchase Order Setiap Bulan (2019)</th>
                     </tr>
                     <tr>
                         <th>Jan</th>
