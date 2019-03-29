@@ -26,5 +26,6 @@ Route::resource('item','ItemController')->middleware('auth');
 Route::resource('report','ReportController')->middleware('auth');
 Route::resource('dashboard','DashboardController')->middleware('auth');
 Route::resource('add-stock','AddStockController')->middleware('auth');
+// Route::post('/add-stock','AddStockController@reload')->middleware('auth');
 
 Route::get('purchase-order-detail/{po_number}','PurchaseOrderController@detail')->middleware('auth');

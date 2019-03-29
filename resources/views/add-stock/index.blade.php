@@ -14,12 +14,32 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 <i class="fas fa-plus"></i> Tambah Stock
             </button>
+            <button type="button" class="btn btn-success">
+                <i class="fas fa-plus"></i> History Tambah Stock
+            </button>
             <br><br>
+            <h4>Region {{$region}}</h4>
 
             <table class="table table-bordered">
                 <thead>
+                    <tr class="text-center">
+                        <th>No.</th>
+                        <th>Nama Item</th>
+                        <th>Jatah_Awal</th>
+                        <th>Jatah_Sisa</th>
+                    </tr>
                 </thead>
                 <tbody>
+                    <?php $i = 1;?>
+                    @foreach($report as $r)
+                    <tr>
+                        <th>{{$i}}</th>
+                        <td nowrap="nowrap">{{$r['nama_item']}}</td>
+                        <td>{{$r['jatah_awal']}}</td>
+                        <td>{{$r['jatah_sisa']}}</td>
+                    </tr>
+                    <?php $i++; ?>
+                    @endforeach
                 </tbody>
             </table>
         </div>

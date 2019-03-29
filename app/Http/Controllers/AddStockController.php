@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Report;
 use App\AddStock;
+use App\PurchaseOrder;
 use App\Sbu;
 use App\Item;
+use App\Nota;
 
 class AddStockController extends Controller
 {
@@ -20,7 +22,30 @@ class AddStockController extends Controller
         $reports = Report::all();
         $sbus = Sbu::all();
         $items = Item::all();
-        return view('add-stock.index', compact('sbus','reports','items'));
+
+        $region = 'ROJB';
+        $reports = Report::all()->where('nama_sbu', $region);
+        // Redirect if no choose region
+        if($region=="null"){
+            return redirect('dashboard');
+        }
+        foreach ($reports as $r) {
+            $pos = PurchaseOrder::where('nama_sbu', $region)->get();//setiap PO pasti punya PO Number
+            $sumQuantity = 0;
+            foreach ($pos as $po) {
+                $quantity = Nota::where('id_po', $po->po_number)->where('id_item',$r->id_item)->value('quantity');
+                $sumQuantity += $quantity;
+            }
+            $jatahAwal = AddStock::all()->where('nama_sbu', $r->nama_sbu)->where('id_item',$r->id_item)->pluck('add_stock')->sum();
+            $jatahSisa = $jatahAwal - $sumQuantity;
+            $report[] = array(
+                'nama_item' => Item::where('id', $r->id_item)->value('nama_item'),
+                'jatah_awal' => $jatahAwal,
+                'jatah_sisa' => $jatahSisa,
+            );
+        }
+        // $report = null;
+        return view('add-stock.index', compact('report','region','sbus','reports','items'));
     }
 
     /**
@@ -51,6 +76,10 @@ class AddStockController extends Controller
             $stock->save();
         }
         return redirect('add-stock');
+    }
+
+    public function reload(Request $request){
+        return $request;        
     }
 
     /**

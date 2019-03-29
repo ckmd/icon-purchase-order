@@ -104,11 +104,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <i class="fas fa-list nav-icon"></i><p>Halaman Item</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="/report" class="nav-link">
                     <i class="fas fa-table nav-icon"></i><p>Halaman Report</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <!-- <li class="nav-item">
