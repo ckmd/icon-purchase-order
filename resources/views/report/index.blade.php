@@ -44,7 +44,7 @@
                     <tr>
                         <td>{{$r->id}}</td>
                         <td>{{$r->nama_sbu}}</td>
-                        <td>{{$r->id_item}}</td>
+                        <td>{{$r->nama_item}}</td>
                         <td>{{$r->jatah_awal}}</td>
                         <td>
                             <button class="btn btn-warning" data-reportid="{{$r->id}}" data-namasbu="{{$r->nama_sbu}}" data-namaitem="{{$r->id_item}}" data-jatahawal="{{$r->jatah_awal}}" data-toggle="modal" data-target="#edit">Edit</button>

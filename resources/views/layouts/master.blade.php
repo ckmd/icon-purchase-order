@@ -82,6 +82,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <a href="/purchase-order" class="nav-link"><i class="nav-icon fa fa-cart-plus"></i><p>Halaman PO</p></a>
           </li>
+          <li class="nav-item">
+            <a href="/add-stock" class="nav-link"><i class="nav-icon fa fa-cart-plus"></i><p>Halaman Tambah Stock</p></a>
+          </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-cog"></i>

@@ -25,5 +25,6 @@ Route::resource('sbu','SbuController')->middleware('auth');
 Route::resource('item','ItemController')->middleware('auth');
 Route::resource('report','ReportController')->middleware('auth');
 Route::resource('dashboard','DashboardController')->middleware('auth');
+Route::resource('add-stock','AddStockController')->middleware('auth');
 
 Route::get('purchase-order-detail/{po_number}','PurchaseOrderController@detail')->middleware('auth');

@@ -8,14 +8,20 @@ class Report extends Model
 {
     protected $fillable = [
         'nama_sbu',
-        'id_item', 
+        'nama_item', 
         'jatah_awal', 
         'jatah_sisa',
-        'januari',
-        'februari',
-        'maret',
-        'april',
+        'jan',
+        'feb',
+        'mar',
+        'apr',
         'mei',
-        'juni'
+        'jun',
+        'jul',
+        'agt',
+        'sep',
+        'okt',
+        'nov',
+        'des',
     ];
 }

@@ -20,6 +20,19 @@ class DashboardController extends Controller
     public function index()
     {
         $sbus = Sbu::all();
+        $items = Item::all();
+        // Membuat Report Secara Otomatis
+        Report::truncate();
+        foreach ($sbus as $sbu) {
+            foreach ($items as $i) {
+                $report = new Report;
+                $report->nama_sbu = $sbu->nama_sbu;
+                $report->nama_item = $i->nama_item;
+                $report->jatah_awal = 0;
+                $report->jatah_sisa = 0;
+                $report->save();
+            }
+        }
         $report = null;
         return view('dashboard.index', compact('report','sbus'));
     }
@@ -113,7 +126,7 @@ class DashboardController extends Controller
             $totalUsed = array(1,2,3);
             $jatahSisa = $r->jatah_awal - $sumQuantity;
             $report[] = array(
-                'nama_item' => Item::where('id', $r->id_item)->value('nama_item'),
+                'nama_item' => Item::where('nama_item', $r->nama_item)->value('nama_item'),
                 'jatah_awal' => $r->jatah_awal,
                 'jatah_sisa' => $jatahSisa,
                 'jan' => $janQuantity,

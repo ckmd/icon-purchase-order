@@ -16,15 +16,21 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_sbu');
-            $table->integer('id_item');
-            $table->integer('jatah_awal')->default(100);
-            $table->integer('jatah_sisa')->nullable();
-            $table->integer('januari')->nullable()->default(null);
-            $table->integer('februari')->nullable()->default(null);
-            $table->integer('maret')->nullable()->default(null);
-            $table->integer('april')->nullable()->default(null);
-            $table->integer('meu')->nullable()->default(null);
-            $table->integer('juni')->nullable()->default(null);
+            $table->string('nama_item');
+            $table->integer('jatah_awal')->nullable()->default(null);
+            $table->integer('jatah_sisa')->nullable()->default(null);
+            $table->integer('jan')->nullable()->default(null);
+            $table->integer('feb')->nullable()->default(null);
+            $table->integer('mar')->nullable()->default(null);
+            $table->integer('apr')->nullable()->default(null);
+            $table->integer('mei')->nullable()->default(null);
+            $table->integer('jun')->nullable()->default(null);
+            $table->integer('jul')->nullable()->default(null);
+            $table->integer('agt')->nullable()->default(null);
+            $table->integer('sep')->nullable()->default(null);
+            $table->integer('okt')->nullable()->default(null);
+            $table->integer('nov')->nullable()->default(null);
+            $table->integer('des')->nullable()->default(null);
             $table->timestamps();
         });
     }
