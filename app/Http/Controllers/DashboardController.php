@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DateTime;
 use App\Report;
+use App\AddStock;
 use App\Item;
 use App\PurchaseOrder;
 use App\Nota;
@@ -27,7 +28,7 @@ class DashboardController extends Controller
             foreach ($items as $i) {
                 $report = new Report;
                 $report->nama_sbu = $sbu->nama_sbu;
-                $report->nama_item = $i->nama_item;
+                $report->id_item = $i->id;
                 $report->jatah_awal = 0;
                 $report->jatah_sisa = 0;
                 $report->save();
@@ -122,12 +123,11 @@ class DashboardController extends Controller
                         break;
                 }
             }
-
-            $totalUsed = array(1,2,3);
-            $jatahSisa = $r->jatah_awal - $sumQuantity;
+            $jatahAwal = AddStock::all()->where('nama_sbu', $r->nama_sbu)->where('id_item',$r->id_item)->pluck('add_stock')->sum();
+            $jatahSisa = $jatahAwal - $sumQuantity;
             $report[] = array(
-                'nama_item' => Item::where('nama_item', $r->nama_item)->value('nama_item'),
-                'jatah_awal' => $r->jatah_awal,
+                'nama_item' => Item::where('id', $r->id_item)->value('nama_item'),
+                'jatah_awal' => $jatahAwal,
                 'jatah_sisa' => $jatahSisa,
                 'jan' => $janQuantity,
                 'feb' => $febQuantity,

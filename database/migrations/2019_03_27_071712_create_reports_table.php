@@ -16,7 +16,7 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_sbu');
-            $table->string('nama_item');
+            $table->integer('id_item');
             $table->integer('jatah_awal')->nullable()->default(null);
             $table->integer('jatah_sisa')->nullable()->default(null);
             $table->integer('jan')->nullable()->default(null);

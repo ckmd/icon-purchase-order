@@ -8,7 +8,7 @@ class Report extends Model
 {
     protected $fillable = [
         'nama_sbu',
-        'nama_item', 
+        'id_item', 
         'jatah_awal', 
         'jatah_sisa',
         'jan',

@@ -12,7 +12,7 @@
             <div class="form-group">
                 <label for="sbu">Select list (select one):</label>
                 <select name="nama_sbu" class="form-control" id="sbu">
-                    <option selected>-- Pilih Region SBU --</option>
+                    <option value="" selected>-- Pilih Region SBU --</option>
                 @foreach($sbus as $r)
                     <option value="{{$r->nama_sbu}}">{{$r->nama_sbu}}</option>
                 @endforeach
