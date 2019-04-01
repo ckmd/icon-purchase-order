@@ -28,7 +28,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h4>Halaman Item</h4>
+            <h3>Halaman Item</h3>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 <i class="fas fa-plus"></i> Tambah Item Baru
             </button> <br> <br>

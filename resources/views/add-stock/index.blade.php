@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h4>Halaman Stock</h4>
+            <h3>Halaman Stock</h3>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 <i class="fas fa-plus"></i> Tambah Stock
             </button>
@@ -26,7 +26,7 @@
                 </div>
             </form>
             @if($report!=null)
-            <h4>Region {{$region}}</h4>
+            <h3>Region {{$region}}</h3>
 
             <table class="table table-bordered">
                 <thead>

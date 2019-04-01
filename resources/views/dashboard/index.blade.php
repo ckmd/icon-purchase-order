@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-        <H4>Halaman Dashboard</H4>
+        <h3>Halaman Dashboard</h3>
             <form action="{{route('dashboard.store')}}" method="post">
               {{csrf_field()}}
                 <div class="form-group">
@@ -18,7 +18,7 @@
                 </div>
             </form>
             @if($report!=null)
-            <h4 class="text-center">Report Stock Region {{$region}}</h4>
+            <h3 class="text-center">Report Stock Region {{$region}}</h3>
             <a href="{{url('download-report')}}" class="btn btn-success"><i class="fa fa-download"></i> Download</a><br><br>
             <table class="table table-bordered table-responsive">
                 <thead>
