@@ -99,6 +99,22 @@ class AddStockController extends Controller
         return view('add-stock.history', compact('addStocks'));
     }
 
+    public function historyDetail($as_number){
+        $detail_as = AddStock::where('as_number',$as_number)->first();
+        $detailAddStock = AddStockDetail::where('as_number',$as_number)->where('add_stock','<>',null)->get();
+        $no = 1;
+        foreach ($detailAddStock as $i) {
+            $namaItem = Item::where('id', $i->id_item)->value('nama_item');
+            $details[] = array(
+                'no' => $no,
+                'item_name' => $namaItem,
+                'quantity' => $i->add_stock,
+            );
+            $no++;
+        }
+        return view('add-stock.history-detail', compact('detail_as', 'details'));
+    }
+
     /**
      * Display the specified resource.
      *

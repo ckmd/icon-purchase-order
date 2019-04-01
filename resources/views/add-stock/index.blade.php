@@ -1,10 +1,5 @@
 @extends('layouts.master')
 
-@section('footer')
-<script>
-</script>
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -38,7 +33,7 @@
                     <tr class="text-center">
                         <th>No.</th>
                         <th>Nama Item</th>
-                        <th>Jatah_Awal</th>
+                        <!-- <th>Jatah_Awal</th> -->
                         <th>Jatah_Sisa</th>
                     </tr>
                 </thead>
@@ -48,7 +43,7 @@
                     <tr>
                         <th>{{$i}}</th>
                         <td nowrap="nowrap">{{$r['nama_item']}}</td>
-                        <td>{{$r['jatah_awal']}}</td>
+                        <!-- <td>{{$r['jatah_awal']}}</td> -->
                         <td>{{$r['jatah_sisa']}}</td>
                     </tr>
                     <?php $i++; ?>

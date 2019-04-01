@@ -43,8 +43,6 @@ class PurchaseOrderController extends Controller
             $no++;
             $total += $totalPrice;
         }
-        // return $items;
-        // return $detail_po;
         return view('purchase-order.detail', compact('detail_po', 'items','total'));
     }
     /**

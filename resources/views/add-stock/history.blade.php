@@ -2,6 +2,9 @@
 
 @section('footer')
 <script>
+    $(".detail-history").click(function() {
+        window.location = $(this).data("historyhref");
+    });
 </script>
 @endsection
 
@@ -11,7 +14,7 @@
         <div class="col-md-12">
             <button class="btn btn-primary" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i><span> Back</span></button>        
             <br><br>
-            <h4>Halaman History Add Stock</h4>
+            <h3>Halaman History Add Stock</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
@@ -33,7 +36,7 @@
                         <td>{{$as->description}}</td>
                         <td>{{$as->as_date}}</td>
                         <td>
-                            <button class="btn btn-success">Detail</button>
+                            <button class='btn btn-success detail-history' data-historyhref="history-add-stock-detail/{{$as->as_number}}">Detail</button>
                         </td>
                     </tr>
                     <?php $i++; ?>
