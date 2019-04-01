@@ -44,7 +44,7 @@
                     <td>{{$sbu->nama_sbu}}</td>
                     <td>
                         <button class="btn btn-warning" data-sbuid="{{$sbu->id}}" data-namasbu="{{$sbu->nama_sbu}}" data-toggle="modal" data-target="#edit">Edit</button>
-                        <button class="btn btn-danger" data-sbuid="{{$sbu->id}}" data-toggle="modal" data-target="#delete">Edit</button>
+                        <button class="btn btn-danger" data-sbuid="{{$sbu->id}}" data-toggle="modal" data-target="#delete">Delete</button>
                     </td>
                 </tr>
                 <?php $no++; ?>

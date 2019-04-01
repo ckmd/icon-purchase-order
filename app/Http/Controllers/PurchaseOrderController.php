@@ -122,10 +122,11 @@ class PurchaseOrderController extends Controller
      */
     public function destroy(Request $request)
     {
+        // ketika menghapus purchase order, maka akan menghapus nota yang dimilikinya
         $po = PurchaseOrder::findOrFail($request->id);
-        $poInNota = Nota::where('id_po',$request->id)->get();
-        $po->delete();
+        $poInNota = Nota::where('id_po',$po->po_number)->get();
         $poInNota->each->delete();
+        $po->delete();
         return back();
     }
 }

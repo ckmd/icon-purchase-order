@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sbu;
+use App\Nota;
+use App\PurchaseOrder;
 
 class SbuController extends Controller
 {
@@ -83,13 +85,15 @@ class SbuController extends Controller
      */
     public function destroy(Request $request)
     {        
+        // Ketika menghapus sbu, maka akan menghapus semua purchase order pada sbu tersebut, dan menghapus nota yang dimiliki oleh masing masing purchase order
         $sbu = Sbu::findOrFail($request->id);
+        $sbuInPO = PurchaseOrder::where('nama_sbu',$sbu->nama_sbu)->get();
+        foreach ($sbuInPO as $sip) {
+            $poInNota = Nota::where('id_po',$sip->po_number)->get();
+            $poInNota->each->delete();
+        }
+        $sbuInPO->each->delete();
         $sbu->delete();
-        // menghapus purchase order yang terlibat
-        // $sbuInNota = PurchaseOrder::where('nama_sbu',$request->id)->get();
-        // $itemInNota->each->delete();
-        // Menghapus nota yang terlibat dengan purchase order
         return back();
-
     }
 }
