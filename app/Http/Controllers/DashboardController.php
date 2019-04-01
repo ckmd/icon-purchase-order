@@ -23,13 +23,14 @@ class DashboardController extends Controller
     {
         $sbus = Sbu::all();
         $items = Item::all();
-        // Membuat Report Secara Otomatis
+        // Membuat Report Secara Otomatis berdasarkan jumlah item dan sbu
         Report::truncate();
         foreach ($sbus as $sbu) {
             foreach ($items as $i) {
                 $report = new Report;
                 $report->nama_sbu = $sbu->nama_sbu;
                 $report->id_item = $i->id;
+                $report->nama_item = $i->nama_item;
                 $report->jatah_awal = 0;
                 $report->jatah_sisa = 0;
                 $report->save();
@@ -59,11 +60,27 @@ class DashboardController extends Controller
     {
         $sbus = Sbu::all();
         $region = $request->nama_sbu;
+        $items = Item::all();
+        // Membuat Report Secara Otomatis berdasarkan jumlah item dan sbu
+        Report::truncate();
+        foreach ($sbus as $sbu) {
+            foreach ($items as $i) {
+                $report = new Report;
+                $report->nama_sbu = $sbu->nama_sbu;
+                $report->id_item = $i->id;
+                $report->nama_item = $i->nama_item;
+                $report->jatah_awal = 0;
+                $report->jatah_sisa = 0;
+                $report->save();
+            }
+        }
+
         $reports = Report::all()->where('nama_sbu', $region);
         // Redirect if no choose region
         if($region=="null"){
             return redirect('dashboard');
         }
+        Report::truncate();
         foreach ($reports as $r) {
             $pos = PurchaseOrder::where('nama_sbu', $region)->get();//setiap PO pasti punya PO Number
             $sumQuantity = 0;
@@ -130,25 +147,33 @@ class DashboardController extends Controller
                 $jatahAwal += AddStockDetail::all()->where('as_number', $sc->as_number)->where('id_item',$r->id_item)->pluck('add_stock')->sum();
             }
             $jatahSisa = $jatahAwal - $sumQuantity;
-            $report[] = array(
-                'nama_item' => Item::where('id', $r->id_item)->value('nama_item'),
-                'jatah_awal' => $jatahAwal,
-                'jatah_sisa' => $jatahSisa,
-                'jan' => $janQuantity,
-                'feb' => $febQuantity,
-                'mar' => $marQuantity,
-                'apr' => $aprQuantity,
-                'mei' => $meiQuantity,
-                'jun' => $junQuantity,
-                'jul' => $julQuantity,
-                'agt' => $agtQuantity,
-                'sep' => $sepQuantity,
-                'okt' => $oktQuantity,
-                'nov' => $novQuantity,
-                'des' => $desQuantity,
-            );
+            $report = new Report;
+            $report->nama_sbu = $r->nama_sbu;
+            $report->id_item = $r->id_item;
+            $report->nama_item = $r->nama_item;
+            $report->jatah_awal = $jatahAwal;
+            $report->jatah_sisa = $jatahSisa;
+            $report->jan = $janQuantity;
+            $report->feb = $febQuantity;
+            $report->mar = $marQuantity;
+            $report->apr = $aprQuantity;
+            $report->mei = $meiQuantity;
+            $report->jun = $junQuantity;
+            $report->jul = $julQuantity;
+            $report->agt = $agtQuantity;
+            $report->sep = $sepQuantity;
+            $report->okt = $oktQuantity;
+            $report->nov = $novQuantity;
+            $report->des = $desQuantity;
+            $report->save();
         }
+        $report = Report::all()->where('nama_sbu', $region);
         return view('dashboard.index', compact('report','region','sbus'));
+    }
+
+    public function download(){
+        $report = Report::all();
+        return view('dashboard.download', compact('report'));
     }
 
     /**

@@ -31,3 +31,4 @@ Route::post('add-stock-reload','AddStockController@reload')->middleware('auth');
 Route::get('purchase-order-detail/{po_number}','PurchaseOrderController@detail')->middleware('auth');
 Route::get('history-add-stock','AddStockController@history')->middleware('auth');
 Route::get('history-add-stock-detail/{as_number}','AddStockController@historyDetail')->middleware('auth');
+Route::get('download-report', 'DashboardController@download')->middleware('auth');

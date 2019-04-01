@@ -17,6 +17,7 @@ class CreateReportsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama_sbu');
             $table->integer('id_item');
+            $table->string('nama_item');
             $table->integer('jatah_awal')->nullable()->default(null);
             $table->integer('jatah_sisa')->nullable()->default(null);
             $table->integer('jan')->nullable()->default(null);

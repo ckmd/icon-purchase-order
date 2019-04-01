@@ -18,7 +18,8 @@
                 </div>
             </form>
             @if($report!=null)
-            <h4>Region {{$region}}</h4>
+            <h4 class="text-center">Report Stock Region {{$region}}</h4>
+            <a href="{{url('download-report')}}" class="btn btn-success"><i class="fa fa-download"></i> Download</a><br><br>
             <table class="table table-bordered table-responsive">
                 <thead>
                     <tr class="text-center">
@@ -48,21 +49,21 @@
                     @foreach($report as $r)
                     <tr>
                         <th>{{$i}}</th>
-                        <td nowrap="nowrap">{{$r['nama_item']}}</td>
-                        <td>{{$r['jatah_awal']}}</td>
-                        <td>{{$r['jatah_sisa']}}</td>
-                        <td>{{$r['jan']}}</td>
-                        <td>{{$r['feb']}}</td>
-                        <td>{{$r['mar']}}</td>
-                        <td>{{$r['apr']}}</td>
-                        <td>{{$r['mei']}}</td>
-                        <td>{{$r['jun']}}</td>
-                        <td>{{$r['jul']}}</td>
-                        <td>{{$r['agt']}}</td>
-                        <td>{{$r['sep']}}</td>
-                        <td>{{$r['okt']}}</td>
-                        <td>{{$r['nov']}}</td>
-                        <td>{{$r['des']}}</td>
+                        <td nowrap="nowrap">{{$r->nama_item}}</td>
+                        <td>{{$r->jatah_awal}}</td>
+                        <td>{{$r->jatah_sisa}}</td>
+                        <td>{{$r->jan}}</td>
+                        <td>{{$r->feb}}</td>
+                        <td>{{$r->mar}}</td>
+                        <td>{{$r->apr}}</td>
+                        <td>{{$r->mei}}</td>
+                        <td>{{$r->jun}}</td>
+                        <td>{{$r->jul}}</td>
+                        <td>{{$r->agt}}</td>
+                        <td>{{$r->sep}}</td>
+                        <td>{{$r->okt}}</td>
+                        <td>{{$r->nov}}</td>
+                        <td>{{$r->des}}</td>
                     </tr>
                     <?php $i++?>
                     @endforeach

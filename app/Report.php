@@ -9,6 +9,7 @@ class Report extends Model
     protected $fillable = [
         'nama_sbu',
         'id_item', 
+        'nama_item', 
         'jatah_awal', 
         'jatah_sisa',
         'jan',
