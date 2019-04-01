@@ -25,7 +25,8 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
-                    ICON+ Purchase Order 3PL
+                    <img src="{{asset('img/icon.png')}}" alt="AdminLTE Logo" style="opacity: 0.8" width="7%" height="7%">
+                    Purchase Order 3PL
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
