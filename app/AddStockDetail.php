@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AddStock extends Model
+class AddStockDetail extends Model
 {
     protected $fillable = [
-        'nama_sbu','as_number','description','as_date'
+        'id_item','as_number','add_stock'
     ];
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Report;
 use App\AddStock;
+use App\AddStockDetail;
 use App\PurchaseOrder;
 use App\Sbu;
 use App\Item;
@@ -44,13 +45,20 @@ class AddStockController extends Controller
     public function store(Request $request)
     {
         $items = Item::all();
+
+        $stock = new AddStock;
+        $stock->nama_sbu = $request->nama_sbu;
+        $stock->as_date = $request->as_date;
+        $stock->as_number = $request->as_number;
+        $stock->description = $request->description;
+        $stock->save();
         foreach ($items as $i) {
             $id_item = $i->id;
-            $stock = new AddStock;
-            $stock->nama_sbu = $request->nama_sbu;
-            $stock->id_item = $id_item;
-            $stock->add_stock = $request->$id_item;
-            $stock->save();
+            $detailStock = new AddStockDetail;
+            $detailStock->id_item = $id_item;
+            $detailStock->as_number = $request->as_number;
+            $detailStock->add_stock = $request->$id_item;
+            $detailStock->save();
         }
         return redirect('add-stock');
     }
@@ -71,7 +79,11 @@ class AddStockController extends Controller
                 $quantity = Nota::where('id_po', $po->po_number)->where('id_item',$r->id_item)->value('quantity');
                 $sumQuantity += $quantity;
             }
-            $jatahAwal = AddStock::all()->where('nama_sbu', $r->nama_sbu)->where('id_item',$r->id_item)->pluck('add_stock')->sum();
+            $stockCount = AddStock::all()->where('nama_sbu', $r->nama_sbu);
+            $jatahAwal = 0;
+            foreach ($stockCount as $sc) {
+                $jatahAwal += AddStockDetail::all()->where('as_number', $sc->as_number)->where('id_item',$r->id_item)->pluck('add_stock')->sum();
+            }
             $jatahSisa = $jatahAwal - $sumQuantity;
             $report[] = array(
                 'nama_item' => Item::where('id', $r->id_item)->value('nama_item'),
@@ -80,6 +92,11 @@ class AddStockController extends Controller
             );
         }    
         return view('add-stock.index', compact('region','report','sbus','items'));
+    }
+
+    public function history(){
+        $addStocks = AddStock::all();
+        return view('add-stock.history', compact('addStocks'));
     }
 
     /**

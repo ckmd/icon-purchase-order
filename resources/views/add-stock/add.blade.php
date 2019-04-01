@@ -19,6 +19,21 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="as_number">Add Stock Number</label>
+                <input type="text" class="form-control" name="as_number" id="as_number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="des">Description</label>
+                <input type="text" class="form-control" name="description" id="des" required>
+            </div>
+
+            <div class="form-group">
+                <label for="as_date">Add Stock Date</label>
+                <input type="date" class="form-control" name="as_date" id="as_date" required>
+            </div>
+
             <table class="table table-striped">
                 <tr>
                     <th>No.</th>

@@ -13,9 +13,9 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 <i class="fas fa-plus"></i> Tambah Stock
             </button>
-            <button type="button" class="btn btn-success">
+            <a type="button" class="btn btn-success" href="{{url('history-add-stock')}}">
                 <i class="fas fa-plus"></i> History Tambah Stock
-            </button>
+            </a>
             <br><br>
 
             <form action="{{url('add-stock-reload')}}" method="post">

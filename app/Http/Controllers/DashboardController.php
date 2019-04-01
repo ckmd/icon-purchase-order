@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DateTime;
 use App\Report;
 use App\AddStock;
+use App\AddStockDetail;
 use App\Item;
 use App\PurchaseOrder;
 use App\Nota;
@@ -123,7 +124,11 @@ class DashboardController extends Controller
                         break;
                 }
             }
-            $jatahAwal = AddStock::all()->where('nama_sbu', $r->nama_sbu)->where('id_item',$r->id_item)->pluck('add_stock')->sum();
+            $stockCount = AddStock::all()->where('nama_sbu', $r->nama_sbu);
+            $jatahAwal = 0;
+            foreach ($stockCount as $sc) {
+                $jatahAwal += AddStockDetail::all()->where('as_number', $sc->as_number)->where('id_item',$r->id_item)->pluck('add_stock')->sum();
+            }
             $jatahSisa = $jatahAwal - $sumQuantity;
             $report[] = array(
                 'nama_item' => Item::where('id', $r->id_item)->value('nama_item'),

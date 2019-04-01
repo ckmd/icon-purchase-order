@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddStocksTable extends Migration
+class CreateAddStockDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateAddStocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('add_stocks', function (Blueprint $table) {
+        Schema::create('add_stock_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_sbu');
+            $table->integer('id_item');
             $table->integer('as_number');
-            $table->string('description');
-            $table->dateTime('as_date');
+            $table->integer('add_stock')->nullable()->default(null);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateAddStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('add_stocks');
+        Schema::dropIfExists('add_stock_details');
     }
 }
